@@ -13,7 +13,6 @@ const videoConstraints = {
 let Basic = (props) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null)
-  const [deviceId, setDeviceId] = useState({});
   const [devices, setDevices] = useState([]);
 
   const capture = useCallback(() => {
@@ -57,8 +56,7 @@ let Basic = (props) => {
               audio={false}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
-              videoConstraints={{ deviceId: device.deviceId }}
-              videoConstraints={videoConstraints}
+              videoConstraints={{ ...videoConstraints, deviceId: device.deviceId }}
             />
             {device.label || `Device ${key + 1}`}
           </div>
